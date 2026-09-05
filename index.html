@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sale by Saimon — Garage Sale</title>
+  <meta name="description" content="Sneakers y ropa de mi colección personal en venta. Córdoba, Argentina.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#e5e4de">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div id="boot" aria-hidden="true">
+    <span class="mono">Cargando sale</span>
+    <strong id="bootN">00</strong>
+  </div>
+
+  <header id="header">
+    <a class="brand" href="#top">Sale by Saimon</a>
+    <div class="header-right">
+      <span class="mono hide-mobile" id="clock">Córdoba —:—</span>
+      <span class="mono hide-mobile"><b id="headerCount">0</b> items</span>
+      <a class="outline-btn mono" href="https://instagram.com/gsimonnn" target="_blank" rel="noopener">Instagram ↗</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="floating-products" id="floatingProducts" aria-hidden="true"></div>
+
+      <div class="hero-copy">
+        <div class="eyebrow mono">
+          <span>Colección personal</span>
+          <span>31°25′S 64°11′O</span>
+          <span>Córdoba, AR</span>
+        </div>
+        <h1>
+          <span class="hero-line"><span>Sale</span></span>
+          <span class="hero-line indent"><span>By</span></span>
+          <span class="hero-line"><span>Saimon<i class="dot"></i></span></span>
+        </h1>
+      </div>
+
+      <div class="hero-bottom">
+        <div class="stats">
+          <div><span class="mono">Items</span><strong id="statItems">0</strong></div>
+          <div><span class="mono">Categorías</span><strong id="statCategories">0</strong></div>
+          <div><span class="mono">Moneda</span><strong>USD</strong></div>
+          <div><span class="mono">Disponibles</span><strong id="statAvailable">0</strong></div>
+        </div>
+        <a class="outline-btn mono" href="#catalogo">Ver catálogo ↓</a>
+      </div>
+      <div class="scroll-cue mono"><span>Scroll</span><i></i></div>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+
+    <section class="content-section">
+      <div class="section-head reveal">
+        <h2>Cómo funciona</h2>
+        <span class="mono">Simple y directo</span>
+      </div>
+      <div class="terms reveal">
+        <article><span class="mono accent">01 — Origen</span><h3>Todo es mío</h3><p>Sneakers y ropa de mi colección personal. Una unidad de cada producto.</p></article>
+        <article><span class="mono accent">02 — Estado</span><h3>Fotos y detalles reales</h3><p>Cada publicación indica el estado del producto. Si necesitás más fotos, pedímelas sin problema.</p></article>
+        <article><span class="mono accent">03 — Pago</span><h3>Precio en USD</h3><p>Los precios publicados están expresados en dólares. Coordinamos el medio de pago al momento de la compra.</p></article>
+        <article><span class="mono accent">04 — Envíos</span><h3>A todo el país</h3><p>Envíos a todo el país · Entregas en Córdoba Capital.</p></article>
+      </div>
+    </section>
+
+    <section class="content-section latest-section">
+      <div class="section-head reveal">
+        <h2>Destacados</h2>
+        <span class="mono">Selección inicial — arrastrá →</span>
+      </div>
+      <div class="rail reveal" id="rail"></div>
+      <div class="rail-progress reveal"><i id="railProgress"></i></div>
+    </section>
+
+    <div class="big-marquee" aria-hidden="true"><div id="bigMarquee"></div></div>
+
+    <section class="content-section" id="catalogo">
+      <div class="section-head reveal">
+        <h2>El catálogo</h2>
+        <span class="mono"><b id="catalogCount">0</b> items disponibles</span>
+      </div>
+
+      <div class="filters">
+        <div class="filter-row">
+          <span class="filter-label">Categoría</span>
+          <button class="chip" data-category="ALL" aria-pressed="true">Todo</button>
+          <button class="chip" data-category="SNEAKERS" aria-pressed="false">Sneakers</button>
+          <button class="chip" data-category="ROPA" aria-pressed="false">Ropa</button>
+        </div>
+        <div class="filter-row">
+          <span class="filter-label">Orden</span>
+          <button class="chip" data-sort="new" aria-pressed="true">Catálogo</button>
+          <button class="chip" data-sort="name" aria-pressed="false">Nombre A–Z</button>
+          <span class="visible-count"><b id="visibleCount">0</b> visibles</span>
+        </div>
+      </div>
+
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="contact-section">
+      <div class="section-head reveal">
+        <h2>¿Te interesa algo?</h2>
+        <span class="mono">Hablemos</span>
+      </div>
+      <div class="contact-grid reveal">
+        <a href="https://instagram.com/gsimonnn" target="_blank" rel="noopener">
+          <div><span class="mono">Instagram</span><h3>@gsimonnn</h3></div><span>↗</span>
+        </a>
+        <a href="https://wa.me/12345678" target="_blank" rel="noopener">
+          <div><span class="mono">Consulta directa</span><h3>WhatsApp</h3></div><span>↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="footer-cta" href="https://instagram.com/gsimonnn" target="_blank" rel="noopener">Hablemos<i class="dot"></i></a>
+    <div class="footer-meta">
+      <div class="mono">Sale by Saimon · Córdoba, Argentina<br>Precios en USD · Envíos a todo el país</div>
+      <nav class="mono"><a href="#catalogo">Catálogo</a><a href="https://instagram.com/gsimonnn" target="_blank" rel="noopener">Instagram</a><a href="#top">Volver arriba ↑</a></nav>
+    </div>
+  </footer>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel">
+      <div class="modal-top"><span class="mono" id="modalRef">Ref</span><button class="close-btn" data-close>Cerrar ✕</button></div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="js/products.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
