@@ -1,5 +1,6 @@
 // Inventario real — Sale by Saimon
 // price y condition quedan en null hasta que definamos precio de venta y estado real.
+// condition acepta un puntaje numérico de 0 a 10 (ej.: condition:9.5).
 window.PRODUCTS = [
   {id:18,name:"Jordan 1 Retro Low OG",variant:"Black Dark Powder Blue",category:"SNEAKERS",size:"US 9",style:"CZ0775-104",colorway:"White/Black/Dark Powder Blue",releaseDate:"27/07/2022",price:null,condition:null,image:"assets/products/jordan-1-low-og-dark-powder-blue.webp",featured:true,available:true},
   {id:17,name:"Jordan 1 Low OG",variant:"Starfish",category:"SNEAKERS",size:"US 9",style:"CZ0775-801",colorway:"Starfish/White-Black",releaseDate:"02/09/2021",price:null,condition:null,image:"assets/products/jordan-1-low-og-starfish.webp",featured:true,available:true},

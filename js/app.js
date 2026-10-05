@@ -8,6 +8,14 @@ const pad = n => String(n).padStart(3,"0");
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const INSTAGRAM = "https://instagram.com/gsimonnn";
 const WHATSAPP = "https://wa.me/12345678";
+const conditionScore = p => {
+  const score = typeof p.condition === "number" ? p.condition : parseFloat(String(p.condition || "").replace(",", "."));
+  return Number.isFinite(score) ? Math.max(0, Math.min(10, score)) : null;
+};
+const conditionText = p => {
+  const score = conditionScore(p);
+  return score == null ? "" : `${score % 1 ? score.toFixed(1) : score}/10`;
+};
 
 const available = PRODUCTS.filter(p=>p.available);
 $("#headerCount").textContent = available.length;
@@ -26,12 +34,20 @@ function cardHTML(p){
     </div>
     <div class="product-title-row"><span class="product-index">${pad(p.id)}</span><span class="product-name">${esc(p.name)}</span></div>
     <div class="product-variant">${esc(p.variant)}</div>
-    <div class="product-footer"><span class="mono">${esc(p.size)}</span><span class="price">${p.price==null?"Consultar":"<small>U$D</small>"+p.price}</span></div>
-  </button>`;
+     <div class="product-footer"><span class="mono">${esc(p.size)}</span><span class="price">${p.price==null?"Consultar":"<small>U$D</small>"+p.price}</span></div>
+     ${conditionScore(p)!=null?`<div class="condition-wrap"><span class="condition-label mono">Estado ${conditionText(p)}</span><div class="condition" data-condition="${conditionScore(p)}"><i></i></div></div>`:""}
+   </button>`;
+}
+
+function fillConditions(scope){
+  scope.querySelectorAll(".condition[data-condition]").forEach(el=>{
+    requestAnimationFrame(()=>{el.querySelector("i").style.width=(Number(el.dataset.condition)*10)+"%";});
+  });
 }
 
 const rail=$("#rail");
 rail.innerHTML = available.filter(p=>p.featured).map(p=>`<div class="rail-item">${cardHTML(p)}</div>`).join("");
+fillConditions(rail);
 
 
 let category="ALL", sort="new";
@@ -45,14 +61,17 @@ function render(){
 $$("[data-category]").forEach(btn=>btn.addEventListener("click",()=>{
   category=btn.dataset.category;
   $$("[data-category]").forEach(x=>x.setAttribute("aria-pressed",x===btn));
-  render();
+ render();
+  fillConditions($("#productGrid"));
 }));
 $$("[data-sort]").forEach(btn=>btn.addEventListener("click",()=>{
   sort=btn.dataset.sort;
   $$("[data-sort]").forEach(x=>x.setAttribute("aria-pressed",x===btn));
-  render();
+ render();
+  fillConditions($("#productGrid"));
 }));
 render();
+fillConditions($("#productGrid"));
 
 const modal=$("#modal"), modalBody=$("#modalBody");
 let lastFocus;
@@ -70,7 +89,7 @@ function openProduct(index){
       ${p.colorway?`<tr><td>Colorway</td><td>${esc(p.colorway)}</td></tr>`:""}
       ${p.season?`<tr><td>Season</td><td>${esc(p.season)}</td></tr>`:""}
       ${p.releaseDate?`<tr><td>Release date</td><td>${esc(p.releaseDate)}</td></tr>`:""}
-      ${p.condition?`<tr><td>Estado</td><td>${esc(p.condition)}</td></tr>`:""}
+       ${conditionScore(p)!=null?`<tr><td>Estado</td><td>${conditionText(p)}</td></tr><tr><td>Condición</td><td><div class="condition on-plate" data-condition="${conditionScore(p)}"><i></i></div></td></tr>`:""}
       <tr><td>Disponibilidad</td><td>${p.available?"Disponible":"Vendido"}</td></tr>
     </tbody></table>
     <div class="modal-price"><span class="mono">Precio</span><strong>${p.price==null?"A consultar":"U$D "+p.price}</strong></div>
@@ -79,6 +98,7 @@ function openProduct(index){
       <a href="${WHATSAPP}?text=${msg}" target="_blank" rel="noopener">WhatsApp</a>
     </div>`;
   modal.classList.add("open");document.body.classList.add("locked");
+  fillConditions(modalBody);
   modal.querySelector(".close-btn").focus();
 }
 function closeModal(){modal.classList.remove("open");document.body.classList.remove("locked");lastFocus?.focus();}

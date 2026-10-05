@@ -4,11 +4,12 @@ Garage sale personal de sneakers y ropa — Córdoba, Argentina.
 
 ## Estado de esta versión
 
-- 17 productos reales cargados: 15 sneakers + 2 camperas.
+- 18 productos reales cargados: 16 sneakers + 2 prendas de ropa.
 - Fotos locales dentro de `assets/products/`.
 - Metadata de cada producto: talle, style, colorway, release date y season cuando aplica.
 - Los retail prices **no se muestran**.
 - Precio de venta y estado están pendientes; mientras tanto la UI muestra `Consultar` / `A consultar`.
+- Cuando se carga `condition` con un puntaje de 0 a 10 (por ejemplo `9.5`), la UI muestra `9.5/10` y una barra azul proporcional.
 - Instagram configurado: `@gsimonnn`.
 - WhatsApp sigue con el placeholder `12345678` hasta reemplazarlo por el número real.
 
