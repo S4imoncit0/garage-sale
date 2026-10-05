@@ -4,7 +4,7 @@ Garage sale personal de sneakers y ropa — Córdoba, Argentina.
 
 ## Estado de esta versión
 
-- 18 productos reales cargados: 16 sneakers + 2 prendas de ropa.
+- 18 productos reales cargados: 15 sneakers + 3 prendas de ropa.
 - Fotos locales dentro de `assets/products/`.
 - Metadata de cada producto: talle, style, colorway, release date y season cuando aplica.
 - Los retail prices **no se muestran**.
