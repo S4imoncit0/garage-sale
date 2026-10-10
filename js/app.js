@@ -7,7 +7,7 @@ const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>
 const pad = n => String(n).padStart(3,"0");
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const INSTAGRAM = "https://instagram.com/gsimonnn";
-const WHATSAPP = "https://wa.me/12345678";
+const INSTAGRAM_DM = "https://ig.me/m/gsimonnn";
 const conditionScore = p => {
   const score = typeof p.condition === "number" ? p.condition : parseFloat(String(p.condition || "").replace(",", "."));
   return Number.isFinite(score) ? Math.max(0, Math.min(10, score)) : null;
@@ -79,8 +79,7 @@ function openProduct(index){
   const p=PRODUCTS[index]; if(!p)return;
   lastFocus=document.activeElement;
   $("#modalRef").textContent="Ref SBS-"+pad(p.id);
-  const msg=encodeURIComponent(`Hola! Te consulto por SBS-${pad(p.id)} — ${p.name} ${p.variant} — ${p.size}`);
-  modalBody.innerHTML=`<div class="modal-image"><img src="${esc(p.image)}" alt="${esc(p.name+" "+p.variant)}"></div>
+   modalBody.innerHTML=`<div class="modal-image"><img src="${esc(p.image)}" alt="${esc(p.name+" "+p.variant)}"></div>
     <h3 class="modal-title" id="modalTitle">${esc(p.name)}</h3><p class="modal-variant">${esc(p.variant)}</p>
     <table class="spec"><tbody>
       <tr><td>Categoría</td><td>${p.category==="SNEAKERS"?"Sneakers":"Ropa"}</td></tr>
@@ -95,7 +94,7 @@ function openProduct(index){
     <div class="modal-price"><span class="mono">Precio</span><strong>${p.price==null?"A consultar":"U$D "+p.price}</strong></div>
     <div class="modal-actions">
       <a class="primary" href="${INSTAGRAM}" target="_blank" rel="noopener">Consultar por Instagram →</a>
-      <a href="${WHATSAPP}?text=${msg}" target="_blank" rel="noopener">WhatsApp</a>
+       <a href="${INSTAGRAM_DM}" target="_blank" rel="noopener">Enviar MD</a>
     </div>`;
   modal.classList.add("open");document.body.classList.add("locked");
   fillConditions(modalBody);
