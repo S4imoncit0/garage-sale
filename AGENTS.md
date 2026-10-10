@@ -7,6 +7,7 @@
 - Prices and conditions are intentionally separate fields; `price: null` renders “Consultar” and the WhatsApp URL still contains the placeholder `12345678` until replaced with the real number.
 - There is no package manager, build step, test suite, linter, or formatter configured; verify changes by serving the site and checking the relevant catalog/modal interactions in a browser.
 - Keep product image paths relative to `assets/products/` and preserve the existing local asset filenames when editing inventory.
+- Before applying any requested repository change, create and switch to a dedicated branch; never work directly on `main`.
 
 ## Versión en español
 
@@ -17,3 +18,4 @@
 - Precio y condición son campos independientes: `price: null` muestra “Consultar” y la URL de WhatsApp mantiene el placeholder `12345678` hasta reemplazarlo.
 - No hay gestor de paquetes, build, tests, linter ni formatter configurados; verificá los cambios sirviendo el sitio y revisando en el navegador el catálogo y los modales correspondientes.
 - Mantené las rutas de imágenes relativas a `assets/products/` y conservá los nombres de archivos locales existentes al editar el inventario.
+- Antes de aplicar cualquier cambio solicitado en el repositorio, creá y cambiá a una rama dedicada; nunca trabajes directamente sobre `main`.
