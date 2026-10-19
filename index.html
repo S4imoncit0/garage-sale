@@ -7,6 +7,14 @@
   <meta name="description" content="Sneakers y ropa de mi colección personal en venta. Córdoba, Argentina.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#e5e4de">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sale by Saimon — Garage Sale">
+  <meta property="og:description" content="Sneakers y ropa de mi colección personal en venta. Córdoba, Argentina.">
+  <meta property="og:locale" content="es_AR">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Sale by Saimon — Garage Sale">
+  <meta name="twitter:description" content="Sneakers y ropa de mi colección personal en venta. Córdoba, Argentina.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -66,16 +74,16 @@
         <span class="mono">Simple y directo</span>
       </div>
       <div class="terms reveal">
-        <article><span class="mono accent">01 — Origen</span><h3>Todo es mío</h3><p>Sneakers y ropa de mi colección personal. Una unidad de cada producto.</p></article>
+        <article><span class="mono accent">01 — Origen</span><h3>Todo es mío</h3><p>Cada par salió de mi placard. Los vendo para hacer lugar a los que vienen. Nada de stock, nada de reventa masiva: una unidad de cada uno.</p></article>
         <article><span class="mono accent">02 — Estado</span><h3>Fotos y detalles reales</h3><p>Cada publicación indica el estado del producto. Si necesitás más fotos, pedímelas sin problema.</p></article>
         <article><span class="mono accent">03 — Pago</span><h3>Precio en USD</h3><p>Los precios publicados están expresados en dólares. Coordinamos el medio de pago al momento de la compra.</p></article>
-        <article><span class="mono accent">04 — Envíos</span><h3>A todo el país</h3><p>Envíos a todo el país · Entregas en Córdoba Capital.</p></article>
+        <article><span class="mono accent">04 — Envío</span><h3>Andreani a todo el país</h3><p>Envío por Andreani a cualquier punto de Argentina, con costo a cargo del comprador. En Córdoba Capital, se puede coordinar entrega en mano.</p></article>
       </div>
     </section>
 
     <section class="content-section latest-section">
       <div class="section-head reveal">
-        <h2>Destacados</h2>
+        <h2>Últimos agregados</h2>
         <span class="mono">Selección inicial — arrastrá →</span>
       </div>
       <div class="rail reveal" id="rail"></div>
@@ -98,9 +106,16 @@
           <button class="chip" data-category="ROPA" aria-pressed="false">Ropa</button>
         </div>
         <div class="filter-row">
+          <span class="filter-label">Talle</span>
+          <div id="sizeFilters" class="filter-options"></div>
+        </div>
+        <div class="filter-row">
           <span class="filter-label">Orden</span>
           <button class="chip" data-sort="new" aria-pressed="true">Catálogo</button>
           <button class="chip" data-sort="name" aria-pressed="false">Nombre A–Z</button>
+          <button class="chip" data-sort="price-asc" aria-pressed="false">Precio ↑</button>
+          <button class="chip" data-sort="price-desc" aria-pressed="false">Precio ↓</button>
+          <button class="chip" data-sort="condition" aria-pressed="false">Estado ↓</button>
           <span class="visible-count"><b id="visibleCount">0</b> visibles</span>
         </div>
       </div>
