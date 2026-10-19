@@ -29,7 +29,8 @@ function cardHTML(p){
   return `<button class="product" data-index="${index}" aria-label="Ver ${esc(p.name)} ${esc(p.variant)}">
     <div class="product-media">
       <img loading="lazy" decoding="async" src="${esc(p.image)}" alt="${esc(p.name+" "+p.variant)}">
-      ${p.featured?'<span class="product-tag">Nuevo</span>':''}
+       ${p.featured?'<span class="product-tag">Nuevo</span>':''}
+       <span class="product-unique">Unidad única</span>
       <span class="product-cta"><span>Ver producto</span><span>→</span></span>
     </div>
     <div class="product-title-row"><span class="product-index">${pad(p.id)}</span><span class="product-name">${esc(p.name)}</span></div>
@@ -50,10 +51,16 @@ rail.innerHTML = available.filter(p=>p.featured).map(p=>`<div class="rail-item">
 fillConditions(rail);
 
 
-let category="ALL", sort="new";
+let category="ALL", size="ALL", sort="new";
+const sizeFilters=$("#sizeFilters");
+const sizes=[...new Set(available.map(p=>p.size))].sort((a,b)=>a.localeCompare(b,"es",{numeric:true}));
+sizeFilters.innerHTML=`<button class="chip" data-size="ALL" aria-pressed="true">Todos</button>${sizes.map(s=>`<button class="chip" data-size="${esc(s)}" aria-pressed="false">${esc(s)}</button>`).join("")}`;
 function render(){
-  let list=available.filter(p=>category==="ALL" || p.category===category);
+  let list=available.filter(p=>(category==="ALL" || p.category===category) && (size==="ALL" || p.size===size));
   if(sort==="name") list.sort((a,b)=>(a.name+" "+a.variant).localeCompare(b.name+" "+b.variant,"es"));
+  else if(sort==="price-asc") list.sort((a,b)=>(a.price??Infinity)-(b.price??Infinity));
+  else if(sort==="price-desc") list.sort((a,b)=>(b.price??-Infinity)-(a.price??-Infinity));
+  else if(sort==="condition") list.sort((a,b)=>(b.condition??-Infinity)-(a.condition??-Infinity));
   else list.sort((a,b)=>b.id-a.id);
   $("#productGrid").innerHTML=list.length?list.map(cardHTML).join(""):`<div class="empty"><strong>Nada por acá</strong><span class="mono">Probá con otro filtro</span></div>`;
   $("#visibleCount").textContent=list.length;
@@ -62,6 +69,12 @@ $$("[data-category]").forEach(btn=>btn.addEventListener("click",()=>{
   category=btn.dataset.category;
   $$("[data-category]").forEach(x=>x.setAttribute("aria-pressed",x===btn));
  render();
+  fillConditions($("#productGrid"));
+}));
+$$("[data-size]").forEach(btn=>btn.addEventListener("click",()=>{
+  size=btn.dataset.size;
+  $$('[data-size]').forEach(x=>x.setAttribute('aria-pressed',x===btn));
+  render();
   fillConditions($("#productGrid"));
 }));
 $$("[data-sort]").forEach(btn=>btn.addEventListener("click",()=>{
