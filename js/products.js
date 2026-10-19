@@ -2,6 +2,7 @@
 // price y condition quedan en null hasta que definamos precio de venta y estado real.
 // condition acepta un puntaje numérico de 0 a 10 (ej.: condition:9.5).
 window.PRODUCTS = [
+  {id:19,name:"DJI Osmo Pocket 3",variant:"Creator Combo",category:"OTROS",size:"—",condition:10,style:"Combo Creator",colorway:"—",releaseDate:null,price:550,description:"El artículo se encuentra en excelente estado y se entrega con todos los accesorios.",image:"assets/products/osmo-pocket.webp",featured:false,available:true},
   {id:18,name:"Jordan 1 Retro Low OG",variant:"Black Dark Powder Blue",category:"SNEAKERS",size:"US 9",condition:9,style:"CZ0775-104",colorway:"White/Black/Dark Powder Blue",releaseDate:"27/07/2022",price:130,image:"assets/products/jordan-1-low-og-dark-powder-blue.webp",featured:true,available:true},
   {id:17,name:"Jordan 1 Low OG",variant:"Starfish",category:"SNEAKERS",size:"US 9",condition:9,style:"CZ0775-801",colorway:"Starfish/White-Black",releaseDate:"02/09/2021",price:130,image:"assets/products/jordan-1-low-og-starfish.webp",featured:true,available:true},
   {id:16,name:"Jordan 1 Low SE",variant:"Concord",category:"SNEAKERS",size:"US 9",condition:7.5,style:"DV1309-100",colorway:"White/Black",releaseDate:"17/01/2023",price:140,image:"assets/products/jordan-1-low-se-concord.webp",featured:true,available:true},

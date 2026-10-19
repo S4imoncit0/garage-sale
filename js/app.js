@@ -18,6 +18,7 @@ const conditionText = p => {
 };
 
 const available = PRODUCTS.filter(p=>p.available);
+const categoryLabel = category => ({SNEAKERS:"Sneakers",ROPA:"Ropa",OTROS:"Otros"}[category] || category);
 $("#headerCount").textContent = available.length;
 $("#statItems").textContent = PRODUCTS.length;
 $("#statAvailable").textContent = available.length;
@@ -85,6 +86,9 @@ $$("[data-sort]").forEach(btn=>btn.addEventListener("click",()=>{
 }));
 render();
 fillConditions($("#productGrid"));
+const otherItemsGrid=$("#otherItemsGrid");
+otherItemsGrid.innerHTML=available.filter(p=>p.category==="OTROS").map(cardHTML).join("");
+fillConditions(otherItemsGrid);
 
 const modal=$("#modal"), modalBody=$("#modalBody");
 let lastFocus;
@@ -95,12 +99,13 @@ function openProduct(index){
    modalBody.innerHTML=`<div class="modal-image"><img src="${esc(p.image)}" alt="${esc(p.name+" "+p.variant)}"></div>
     <h3 class="modal-title" id="modalTitle">${esc(p.name)}</h3><p class="modal-variant">${esc(p.variant)}</p>
     <table class="spec"><tbody>
-      <tr><td>Categoría</td><td>${p.category==="SNEAKERS"?"Sneakers":"Ropa"}</td></tr>
+       <tr><td>Categoría</td><td>${categoryLabel(p.category)}</td></tr>
       <tr><td>Talle</td><td>${esc(p.size)}</td></tr>
       ${p.style?`<tr><td>Style</td><td>${esc(p.style)}</td></tr>`:""}
       ${p.colorway?`<tr><td>Colorway</td><td>${esc(p.colorway)}</td></tr>`:""}
       ${p.season?`<tr><td>Season</td><td>${esc(p.season)}</td></tr>`:""}
-      ${p.releaseDate?`<tr><td>Release date</td><td>${esc(p.releaseDate)}</td></tr>`:""}
+       ${p.releaseDate?`<tr><td>Release date</td><td>${esc(p.releaseDate)}</td></tr>`:""}
+       ${p.description?`<tr><td>Detalle</td><td>${esc(p.description)}</td></tr>`:""}
        ${conditionScore(p)!=null?`<tr><td>Estado</td><td>${conditionText(p)}</td></tr><tr><td>Condición</td><td><div class="condition on-plate" data-condition="${conditionScore(p)}"><i></i></div></td></tr>`:""}
       <tr><td>Disponibilidad</td><td>${p.available?"Disponible":"Vendido"}</td></tr>
     </tbody></table>
