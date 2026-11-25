@@ -17,7 +17,7 @@ const conditionText = p => {
   return score == null ? "" : `${score % 1 ? score.toFixed(1) : score}/10`;
 };
 
-const available = PRODUCTS.filter(p=>p.available);
+const available = PRODUCTS.filter(p=>p.available && p.status!=="sold");
 const categoryLabel = category => ({SNEAKERS:"Sneakers",ROPA:"Ropa",OTROS:"Otros"}[category] || category);
 $("#headerCount").textContent = available.length;
 $("#statItems").textContent = PRODUCTS.length;
@@ -31,7 +31,7 @@ function cardHTML(p){
     <div class="product-media">
       <img loading="lazy" decoding="async" src="${esc(p.image)}" alt="${esc(p.name+" "+p.variant)}">
        ${p.featured?'<span class="product-tag">Nuevo</span>':''}
-       <span class="product-unique">Unidad única</span>
+       ${p.status==="sold"?'<span class="product-sold">Vendido</span>':'<span class="product-unique">Unidad única</span>'}
       <span class="product-cta"><span>Ver producto</span><span>→</span></span>
     </div>
     <div class="product-title-row"><span class="product-index">${pad(p.id)}</span><span class="product-name">${esc(p.name)}</span></div>
@@ -87,7 +87,7 @@ $$("[data-sort]").forEach(btn=>btn.addEventListener("click",()=>{
 render();
 fillConditions($("#productGrid"));
 const otherItemsGrid=$("#otherItemsGrid");
-otherItemsGrid.innerHTML=available.filter(p=>p.category==="OTROS").map(cardHTML).join("");
+otherItemsGrid.innerHTML=PRODUCTS.filter(p=>p.category==="OTROS").map(cardHTML).join("");
 fillConditions(otherItemsGrid);
 
 const modal=$("#modal"), modalBody=$("#modalBody");
@@ -107,13 +107,12 @@ function openProduct(index){
        ${p.releaseDate?`<tr><td>Release date</td><td>${esc(p.releaseDate)}</td></tr>`:""}
        ${p.description?`<tr><td>Detalle</td><td>${esc(p.description)}</td></tr>`:""}
        ${conditionScore(p)!=null?`<tr><td>Estado</td><td>${conditionText(p)}</td></tr><tr><td>Condición</td><td><div class="condition on-plate" data-condition="${conditionScore(p)}"><i></i></div></td></tr>`:""}
-      <tr><td>Disponibilidad</td><td>${p.available?"Disponible":"Vendido"}</td></tr>
+       <tr><td>Disponibilidad</td><td>${p.status==="sold"?"Vendido":p.available?"Disponible":"No disponible"}</td></tr>
     </tbody></table>
     <div class="modal-price"><span class="mono">Precio</span><strong>${p.price==null?"A consultar":"U$D "+p.price}</strong></div>
-    <div class="modal-actions">
-      <a class="primary" href="${INSTAGRAM}" target="_blank" rel="noopener">Consultar por Instagram →</a>
-       <a href="${INSTAGRAM_DM}" target="_blank" rel="noopener">Enviar MD</a>
-    </div>`;
+     <div class="modal-actions">
+       ${p.status==="sold"?'<span class="modal-unavailable">No disponible</span>':`<a class="primary" href="${INSTAGRAM}" target="_blank" rel="noopener">Consultar por Instagram →</a><a href="${INSTAGRAM_DM}" target="_blank" rel="noopener">Enviar MD</a>`}
+     </div>`;
   modal.classList.add("open");document.body.classList.add("locked");
   fillConditions(modalBody);
   modal.querySelector(".close-btn").focus();
